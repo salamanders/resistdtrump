@@ -107,9 +107,32 @@ function showRandomAction() {
     document.querySelector('#card').appendChild(clone);
   });
 
+  trackOutboundClicks();
   document.querySelector('#disbelief').textContent = DISBELIEF[Math.floor(Math.random()*DISBELIEF.length)] + ', ';
 }
 
+/** Because we can't forEach a NodeList :( */
+var forEach = function (array, callback, scope) {
+  for (var i = 0; i < array.length; i++) {
+    callback.call(scope, i, array[i]); // passes back stuff we need
+  }
+};
+
+function trackOutboundClicks() {
+  forEach(document.querySelectorAll('a'), function (index, value) {
+    if(!value.onclick && value.href) {
+      let url = value.href;
+      value.onclick = function() {
+       ga('send', 'event', 'outbound', 'click', url, {
+         'transport': 'beacon',
+         'hitCallback': function(){document.location = url;}
+       });
+       return false;
+      };
+      console.info(`Outbound click track enabled on ${url}`);
+    }
+  });
+}
 
 function initUI() {
   document.querySelector('#more').onclick = showRandomAction;
