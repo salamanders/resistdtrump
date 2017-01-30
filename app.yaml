@@ -1,0 +1,49 @@
+# application deploy: `gcloud app deploy -q --project resistdtrump --version 1 --verbosity=info app.yaml`
+runtime: python27
+api_version: 1
+threadsafe: true
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^(.*/)?\.libsvm$
+- ^(.*/)?\.jar$
+- .*\bIcon\b.*
+- ^(.*/)?.*/old/.*$
+
+handlers:
+
+- url: /favicon.ico
+  static_files: website/img/favicon.ico
+  upload: webiste/img/favicon\.ico
+  secure: always
+
+- url: /
+  static_files: website/index.html
+  upload: website/index\.html
+  secure: always
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: website/\1
+  upload: website/(.*\.html)
+  secure: always
+
+- url: /js
+  static_dir: website/js
+  secure: always
+
+- url: /img
+  static_dir: website/img
+  secure: always
+
+- url: /css
+  static_dir: website/css
+  secure: always
+
+builtins:
+- appstats: on
+
