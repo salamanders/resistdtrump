@@ -2,7 +2,7 @@ body {
   background-color: #9e9e9e;
 }
 
-.mdl-grid {
+#what_else, #main_area {
   margin: 0 auto;
   max-width: 600px;
 }
@@ -13,9 +13,14 @@ body {
   align-items: center;
 }
 
+.text-right {
+  text-align: right;
+}
+/*
 .mdl-card__actions > .requires {
   padding-right: 10px;
 }
+*/
 
 .fab-bottom-right {
   top: auto;

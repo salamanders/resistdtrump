@@ -1,4 +1,4 @@
-/*globals gapi, sheetToObject */
+/*globals gapi, sheetToObject, ga */
 /*jshint esversion: 6, unused:true  */
 
 const 
@@ -88,6 +88,12 @@ function showRandomAction() {
   actionText += ' ' + action.what + ' ';
   document.querySelector('#card .mdl-card__title-text').textContent = actionText;
 
+  // What is this action tagged with? Look for emojis.
+  let actionTags = Object.keys(action).filter(function(actionKey){
+    return 'Y' == action[actionKey];
+  }).map(textToEmojiSpan).join(',');
+  document.querySelector('#action_tag').innerHTML = actionTags ? actionTags : 'this';
+
   document.querySelectorAll('#card .mdl-card__actions').forEach(function(node){
     node.parentNode.removeChild(node);
   });
@@ -102,7 +108,7 @@ function showRandomAction() {
   }).forEach(function(r){
     t.content.querySelector('a').textContent = r.resistance;
     t.content.querySelector('a').href = 'https://www.google.com/search?q=' + encodeURIComponent(r.how) + '&btnI=I';
-    t.content.querySelector('.requires').textContent = r.requires;
+    t.content.querySelector('.requires').innerHTML = textToEmojiSpan(r.requires);
     var clone = document.importNode(t.content, true);
     document.querySelector('#card').appendChild(clone);
   });
@@ -138,6 +144,12 @@ function initUI() {
   document.querySelector('#more').onclick = showRandomAction;
 }
 
+function textToEmojiSpan(text) {
+  let emoji = text.substr(0,text.indexOf(' ')),
+    title = text.substr(text.indexOf(' ')+1);
+  return `<span title="${title}">${emoji}</span>`;
+}
+
 if (document.readyState === 'complete' || document.readyState === 'loaded') {
   initUI();
 } else {
@@ -145,7 +157,5 @@ if (document.readyState === 'complete' || document.readyState === 'loaded') {
     initUI();
   });  
 }
-
-
 
 console.info('code:end');

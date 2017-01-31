@@ -26,14 +26,21 @@
 
   <body>
 
-    <div class="mdl-grid">
+    <div class="mdl-grid" id="main_area">
       <div id="card" class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--8dp">
         <div class="mdl-card__title"><h2 class="mdl-card__title-text"></h2></div>
-        <!--<div class="mdl-card__supporting-text"></div>-->
+        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+            If you care about <span id="action_tag"></span> and have
+          </div>
+          <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone text-right">
+            then you should
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="mdl-grid">
+    <div id="what_else" class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
         <button id="more" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
           <span id="disbelief"></span>
@@ -48,9 +55,9 @@
 
     <template id="action">
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored" target="_blank"></a>
-        <div class="mdl-layout-spacer"></div>
         <span class="requires"></span>
+        <div class="mdl-layout-spacer"></div>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored" target="_blank"></a>
       </div>
     </template>
 
