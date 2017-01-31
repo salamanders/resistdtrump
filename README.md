@@ -1,5 +1,7 @@
 # Resist D. Trump
 
+https://resistdtrump.appspot.com
+
 There is an avalanche coming out of the Trump administration, so much that it is overwhelming to keep up resistance to the most egregious actions.  This site 
 
 * is run from a single collaborative spreadsheet
